@@ -1,0 +1,35 @@
+{
+  "expo": {
+    "name": "Gestión de Equipos",
+    "slug": "gestion-equipos-laboratorio",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "gestion-equipos",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "backgroundColor": "#056D9E"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#056D9E"
+      }
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "La aplicación necesita acceso a tus fotos para seleccionar la fotografía de perfil."
+        }
+      ],
+      "expo-asset"
+    ],
+    "experiments": {
+      "typedRoutes": false
+    }
+  }
+}

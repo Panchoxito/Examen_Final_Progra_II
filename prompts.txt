@@ -1,0 +1,29 @@
+Prompt 1
+
+Necesito desarrollar una aplicación móvil en React Native utilizando Expo para gestionar los préstamos de equipos de laboratorio de una universidad. La aplicación debe permitir que los estudiantes se registren ingresando su nombre completo, carné universitario, carrera, fotografía y datos para iniciar sesión.
+
+También quiero que los estudiantes puedan consultar un catálogo de equipos disponibles, solicitar préstamos y revisar el estado de sus solicitudes. Por otra parte, el administrador debe tener un panel donde pueda aprobar o rechazar préstamos, registrar las devoluciones, consultar el historial y generar un reporte de los equipos más solicitados.
+
+Me gustaría que el proyecto tenga una estructura ordenada, que las variables y funciones estén en español y que el código sea sencillo de comprender. Para el diseño quiero utilizar una combinación de blanco, azul, celeste y amarillo, tomando como referencia la imagen que proporcioné. La aplicación debe ser funcional y no solamente mostrar pantallas de ejemplo.
+
+Prompt 2
+
+Continúa con el desarrollo del proyecto desde donde se quedó anteriormente. Revisa lo que ya está realizado para evitar repetir código o modificar partes que funcionan correctamente. Quiero que sigas completando las funcionalidades pendientes y que mantengas el mismo diseño y organización del proyecto.
+
+Prompt 3
+
+Recuerda que para este proyecto debemos utilizar Supabase como base de datos. Necesito que toda la información de los estudiantes, equipos y préstamos quede almacenada correctamente y que las pantallas de la aplicación puedan consultar esos datos.
+
+Prompt 4
+
+Sí, realiza la integración con Supabase y adapta lo que sea necesario para que la aplicación funcione con esta plataforma. Procura conservar las pantallas que ya se han desarrollado y verifica que la conexión permita guardar y consultar los datos correctamente.
+
+Prompt 5
+
+Necesito que termines de configurar la conexión de mi aplicación con Supabase utilizando las credenciales que te proporcioné. Quiero que la base de datos tenga las tablas usuarios, equipos y prestamos, con sus respectivos campos y relaciones, utilizando nombres en español para mantener una mejor organización.
+
+El registro y el inicio de sesión deben funcionar mediante Supabase Auth, mientras que las fotografías de los estudiantes y las imágenes de los equipos deben almacenarse utilizando Supabase Storage.
+
+También necesito que los préstamos se guarden correctamente y que solamente el administrador pueda aprobarlos, rechazarlos o marcarlos como devueltos. Cuando un préstamo sea aprobado, el equipo debe aparecer como no disponible, y cuando sea devuelto, debe volver a estar disponible. Estas validaciones deben realizarse desde la base de datos para evitar errores.
+
+Por último, revisa que las funciones principales trabajen correctamente, configura los permisos de seguridad necesarios y prepara los archivos SQL junto con la documentación del proyecto. Mantén el diseño que solicitamos anteriormente y procura que el código sea ordenado, comprensible y fácil de explicar durante la evaluación.

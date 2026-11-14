@@ -1,0 +1,83 @@
+A. Qué entendí del problema y qué tablas o modelos planteé
+
+Lo que entendí del problema es que se necesita desarrollar una aplicación que permita llevar un mejor control de los equipos que se prestan dentro de los laboratorios de la universidad. La idea principal es evitar que los préstamos se realicen de manera desordenada o que un mismo equipo sea asignado a varios estudiantes al mismo tiempo. También se busca tener un registro de quién solicita cada equipo, cuándo se realiza el préstamo y cuándo debe ser devuelto.
+
+Para solucionar este problema, planteé una aplicación móvil desarrollada en React Native con Expo, donde existen dos tipos de usuarios: estudiantes y administradores. Los estudiantes pueden crear una cuenta con sus datos personales, iniciar sesión, consultar su perfil, visualizar los equipos disponibles y realizar solicitudes de préstamo. También pueden revisar el estado de sus solicitudes para saber si fueron aprobadas, rechazadas o si el equipo ya fue devuelto.
+
+Por otra parte, el administrador tiene acceso a funciones adicionales que le permiten revisar las solicitudes pendientes, decidir cuáles aprobar o rechazar, consultar los préstamos activos y registrar las devoluciones. También puede visualizar un historial general de los movimientos realizados y un reporte de los equipos que se solicitan con mayor frecuencia. Considero que estas funciones son importantes porque permiten mantener un control más completo de los recursos del laboratorio.
+
+Para almacenar la información decidí utilizar Supabase, que trabaja con una base de datos PostgreSQL. Dentro de esta base de datos planteé tres tablas principales llamadas usuarios, equipos y prestamos, las cuales se relacionan entre sí para que la información se mantenga organizada.
+
+La tabla usuarios almacena la información de las personas registradas en la aplicación. Contiene campos como id, nombre_completo, carne_universitario, carrera, foto, correo, rol y fecha_registro. El campo rol permite identificar si la persona es estudiante o administrador y, dependiendo de esto, mostrarle las opciones correspondientes. Para el inicio de sesión se utiliza Supabase Auth, por lo que las contraseñas se administran mediante este servicio y no se guardan directamente en la tabla de usuarios.
+
+La tabla equipos contiene la información de los materiales y dispositivos que se pueden solicitar dentro del laboratorio. Sus campos principales son id, nombre, descripcion, imagen, disponible y fecha_registro. Consideré importante incluir el campo disponible porque permite identificar si un equipo se encuentra libre o si actualmente está prestado a algún estudiante.
+
+La tabla prestamos se encarga de registrar todas las solicitudes realizadas. Contiene los campos id, usuario_id, equipo_id, fecha_prestamo, fecha_devolucion, fecha_devolucion_real, estado y fecha_registro. Esta tabla es fundamental porque permite relacionar al estudiante que realiza la solicitud con el equipo que desea utilizar, además de guardar las fechas y el estado correspondiente.
+
+En cuanto a las relaciones, un usuario puede realizar varios préstamos a lo largo del tiempo, pero cada préstamo pertenece a un solo usuario. De la misma manera, un equipo puede aparecer en diferentes préstamos, aunque no puede estar prestado a dos estudiantes al mismo tiempo. Esto se controla mediante las validaciones establecidas en la base de datos.
+
+También tomé en cuenta que las solicitudes pueden tener cuatro estados: Pendiente, Aprobado, Rechazado y Devuelto. Cuando un estudiante solicita un equipo, el préstamo se registra inicialmente como pendiente. Si el administrador lo aprueba, el equipo deja de estar disponible. Cuando se registra su devolución, vuelve a aparecer como disponible para que otro estudiante pueda solicitarlo.
+
+Una de las reglas que consideré más importantes fue evitar que se aprueben dos préstamos del mismo equipo al mismo tiempo. Para esto se implementaron validaciones en PostgreSQL, de manera que el control no dependa solamente de lo que aparece en la pantalla de la aplicación.
+
+Elegí Supabase porque facilita la conexión entre la aplicación móvil y la base de datos. Además, permite administrar las cuentas de los usuarios, almacenar fotografías y establecer permisos para que cada persona pueda acceder únicamente a la información que le corresponde. Esto me permitió trabajar con una estructura más organizada y mantener las funciones principales del proyecto en un mismo servicio.
+
+En general, considero que la solución planteada permite administrar de mejor manera los equipos del laboratorio, reducir posibles errores al realizar préstamos y mantener un historial que puede consultarse cuando sea necesario.
+
+
+B. Qué partes se delegaron a la IA y por qué
+
+Para desarrollar este proyecto utilicé herramientas de inteligencia artificial como apoyo en diferentes etapas de la programación, principalmente para organizar la estructura de la aplicación, generar partes del código y resolver algunos problemas relacionados con la conexión a la base de datos.
+
+Al inicio solicité ayuda para desarrollar la aplicación utilizando React Native con Expo, tomando en cuenta las funciones que necesitaban los estudiantes y los administradores. También pedí que se mantuviera un diseño sencillo, con los colores blanco, azul, celeste y amarillo, y que las variables y funciones propias estuvieran escritas en español para facilitar la comprensión del código.
+
+Una de las partes en las que más necesité apoyo fue en la configuración de Supabase, ya que inicialmente el proyecto se había planteado utilizando una base de datos local con SQLite y un servidor con Express. Posteriormente decidí cambiarlo para trabajar con Supabase, lo que implicó modificar la manera en que se almacenaban los datos y cómo se comunicaba la aplicación con el backend.
+
+Para realizar este cambio solicité ayuda con la creación de las tablas usuarios, equipos y prestamos, incluyendo sus campos, relaciones y restricciones. También se generaron los archivos SQL necesarios para configurar la base de datos y establecer algunas validaciones importantes para el funcionamiento del sistema.
+
+Otra parte que se trabajó con apoyo de la herramienta fue el registro y el inicio de sesión. En este caso se utilizó Supabase Auth para administrar las cuentas y diferenciar a los estudiantes de los administradores. También se trabajó en la configuración de Supabase Storage para almacenar las fotografías de los estudiantes y las imágenes de los equipos.
+
+Además, se utilizó apoyo para implementar las funciones encargadas de solicitar préstamos, aprobarlos, rechazarlos y registrar devoluciones. Estas operaciones requerían especial atención porque debían verificar la disponibilidad de los equipos y evitar que un mismo recurso fuera prestado a varios estudiantes simultáneamente.
+
+También solicité ayuda para conectar las pantallas de React Native con la información almacenada en Supabase. Esto permitió que el catálogo, los perfiles, las solicitudes y los reportes pudieran trabajar con datos de la base de datos en lugar de mostrar únicamente información colocada de manera manual.
+
+En cuanto al diseño, proporcioné una imagen de referencia con los colores que quería utilizar. A partir de ella se estableció una combinación de blanco, azul, celeste y amarillo para mantener una apariencia uniforme en las diferentes pantallas. Mi intención era que la aplicación fuera agradable visualmente, pero sin agregar elementos innecesarios que complicaran su funcionamiento.
+
+También se utilizó la herramienta para organizar los archivos del proyecto y preparar parte de la documentación, incluyendo las instrucciones para ejecutar la aplicación, los cambios realizados durante el desarrollo y las solicitudes utilizadas para generar el código.
+
+Decidí apoyarme en estas herramientas porque algunas partes del proyecto requerían conocimientos que todavía estoy aprendiendo, especialmente las políticas de seguridad de Supabase, las funciones SQL y la comunicación entre la aplicación móvil y la base de datos. Considero que utilizarlas me ayudó a comprender mejor cómo se relacionan los diferentes componentes de un sistema.
+
+Sin embargo, también entiendo que no basta con obtener el código y utilizarlo directamente. Es importante revisar cómo funciona cada parte, identificar los posibles errores y comprobar que las soluciones realmente cumplen con lo solicitado.
+
+Entre los aspectos que considero más importantes para revisar personalmente están las funciones que controlan la disponibilidad de los equipos, la forma en que se crean los perfiles de los estudiantes, los permisos de acceso y el proceso mediante el cual se actualiza el estado de cada préstamo.
+
+De esta manera, el uso de la inteligencia artificial me permitió avanzar en el desarrollo del proyecto, mientras que mi responsabilidad es comprender su funcionamiento, realizar las pruebas necesarias y poder explicar las decisiones tomadas durante la evaluación.
+
+
+C. Al menos una cosa que la IA hizo mal, que tuve que corregir y cómo me di cuenta
+
+Durante la adaptación del proyecto para utilizar Supabase identifiqué un problema relacionado con el registro de estudiantes y la carga de sus fotografías. En la primera versión del código, después de registrar a un estudiante se intentaba guardar inmediatamente su fotografía y actualizar la información de su perfil, suponiendo que el usuario ya tenía una sesión iniciada.
+
+El problema era que Supabase puede solicitar la confirmación del correo electrónico antes de permitir que un usuario inicie sesión. Cuando esta opción está activada, el registro puede realizarse correctamente, pero no necesariamente se crea una sesión en ese momento.
+
+Esto podía provocar que la aplicación intentara subir una fotografía o modificar información sin contar todavía con los permisos necesarios. Como resultado, el registro podía quedar incompleto o mostrar un error, aunque la cuenta del estudiante ya se hubiera creado.
+
+Me di cuenta de esta situación al revisar el funcionamiento del registro y la manera en que Supabase maneja las sesiones de los usuarios. Observé que el código no estaba considerando el caso en que una persona se registra, pero todavía debe confirmar su correo para poder iniciar sesión.
+
+Para solucionar este inconveniente, se modificó la función encargada del registro dentro del archivo api.js. El cambio consistió en separar la creación de la cuenta de las operaciones que necesitan una sesión activa.
+
+Primero se registra al estudiante utilizando Supabase Auth y se envían sus datos para que se genere el perfil correspondiente en la tabla usuarios. Después, el sistema verifica si existe una sesión disponible antes de intentar subir la fotografía y actualizar la información del perfil.
+
+Cuando la sesión está activa, el proceso puede continuar normalmente. En cambio, si Supabase requiere confirmar el correo electrónico, la aplicación muestra un mensaje indicando que el estudiante debe realizar esa confirmación antes de iniciar sesión.
+
+También se mejoró el manejo de errores para evitar que un problema al subir la fotografía interrumpiera completamente el registro. De esta manera, la aplicación puede informar lo sucedido sin confundir al usuario.
+
+Para revisar la corrección, se analizó el comportamiento del código en ambas situaciones, cuando el registro devuelve una sesión activa y cuando requiere confirmar el correo electrónico. Con esto se verificó a nivel de lógica que la aplicación ya contempla los dos casos y que no intenta realizar operaciones protegidas sin autorización.
+
+Además, se agregó una indicación en la documentación del proyecto para explicar que, cuando la confirmación de correo está habilitada, el estudiante debe completar ese proceso antes de iniciar sesión.
+
+Esta situación me ayudó a comprender que no todas las operaciones pueden realizarse inmediatamente después de crear una cuenta y que es necesario verificar primero si el usuario tiene los permisos correspondientes.
+
+También aprendí que, aunque una solución generada pueda parecer correcta inicialmente, es importante revisar los diferentes casos que pueden presentarse durante su funcionamiento. Un detalle como la existencia de una sesión activa puede afectar varias funciones de la aplicación.
+
+Considero que esta corrección fue importante porque permitió mejorar el proceso de registro, controlar mejor los posibles errores y evitar inconvenientes durante la utilización del sistema. También me sirvió para comprender mejor la relación entre Supabase Auth y el Login.
